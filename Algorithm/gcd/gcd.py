@@ -14,3 +14,16 @@ def gcd_stein(a, b):
         return gcd_stein(a, b >> 1)
     else:
         return gcd_stein(abs(a - b), min(a, b))
+
+# 拓展欧几里得
+def extend_gcd(a, b):
+    global x, y
+    if b == 0:
+        x = 1
+        y = 0
+        return a
+
+    r = extend_gcd(b, a % b)
+
+    x, y = y, x - (a // b) * y
+    return r
